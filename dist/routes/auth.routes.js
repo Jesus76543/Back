@@ -1,0 +1,11 @@
+import express from "express";
+import { getAllUsers, getTimeToken, login, saveUser, updateToken, updateUser, deleteUser, } from "../controllers/auth.controller.js";
+const routes = express.Router();
+routes.post("/login", login);
+routes.get("/getTime", getTimeToken);
+routes.patch("/update/:userId", updateToken);
+routes.get("/users", getAllUsers);
+routes.post("/create", saveUser);
+routes.put("/updateUser/:userId", updateUser);
+routes.delete("/deleteUser/:userId", deleteUser);
+export default routes;
