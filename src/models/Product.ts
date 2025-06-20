@@ -1,4 +1,4 @@
-import { Document, model, Schema, Types } from "mongoose";
+import { Document, Schema, Types } from "mongoose";
 
 export interface Product extends Document {
   _id: Types.ObjectId;
@@ -6,7 +6,7 @@ export interface Product extends Document {
   description: string;
   Quantity: number;
   price: number;
-  deleteAt: Date;
+  deleteAt?: Date;
   createdAt: Date;
   status: boolean;
 }
@@ -19,7 +19,7 @@ export const ProductoSchema = new Schema<Product>({
   },
   description: {
     type: String,
-    required: true, 
+    required: true,
   },
   Quantity: {
     type: Number,
@@ -34,7 +34,6 @@ export const ProductoSchema = new Schema<Product>({
   },
   deleteAt: {
     type: Date,
-    default: Date.now,
   },
   createdAt: {
     type: Date,
@@ -45,5 +44,3 @@ export const ProductoSchema = new Schema<Product>({
     default: true,
   },
 });
-
-

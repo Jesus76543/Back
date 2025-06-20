@@ -22,7 +22,6 @@ export const ProductoSchema = new Schema({
     },
     deleteAt: {
         type: Date,
-        default: Date.now,
     },
     createdAt: {
         type: Date,

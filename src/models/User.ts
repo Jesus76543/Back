@@ -1,15 +1,14 @@
-import { Document, Schema } from "mongoose";
-import { Types } from "mongoose";
+import { Document, Schema, Types } from "mongoose";
 
 export interface IUser extends Document {
   nombre: string;
   email: string; //sera el usuario
   password: string;
-  role: string;
+  roles: string[];
   _id: Types.ObjectId;
   phone: string;
   createdAt: Date;
-  deleteAt: Date;
+  deleteAt?: Date;
   status: boolean;
 }
 
@@ -17,11 +16,11 @@ export const UserSchema = new Schema<IUser>({
   nombre: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, minlength: 8 },
-  role: { type: String },
+  roles: { type: [String], required: true, default: ['user'] },
   phone: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
-  deleteAt: { type: Date, default: Date.now },
-  status: { type: Boolean },
+  deleteAt: { type: Date },
+  status: { type: Boolean, default: true },
 });
 
 // Exportar schema para usar en connections.ts

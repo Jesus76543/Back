@@ -2,7 +2,6 @@ import { Connection } from "mongoose";
 import { getConnections } from "../config/db.js";
 import { UserSchema, IUser } from "./User.js";
 import { OrdenSchema, Order } from "./Order.js";
-import { RolSchema, Role } from "./Role.js";
 import { ProductoSchema, Product } from "./Product.js";
 
 // Función para inicializar todos los modelos con sus respectivas conexiones
@@ -16,7 +15,6 @@ export const initializeModels = () => {
     OrdenSchema,
     "ordenes"
   );
-  const Rol = connections.rolesDB.model<Role>("Rol", RolSchema, "roles");
   const Producto = connections.productosDB.model<Product>(
     "Producto",
     ProductoSchema,
@@ -26,7 +24,6 @@ export const initializeModels = () => {
   return {
     User,
     Orden,
-    Rol,
     Producto,
   };
 };

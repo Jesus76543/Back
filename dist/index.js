@@ -1,13 +1,18 @@
 import express from "express";
 import morgan from "morgan";
 import authRoutes from "./routes/auth.routes.js";
+import productRoutes from "./routes/product.routes.js";
+import orderRoutes from "./routes/order.routes.js";
 import connectDB from "./config/db.js";
 import { initializeModels } from "./models/connections.js";
 const app = express();
 const PORT = 3000;
 app.use(express.json());
 app.use(morgan("dev"));
+// Rutas
 app.use("/api/v1", authRoutes);
+app.use("/api/v1", productRoutes);
+app.use("/api/v1", orderRoutes);
 // Inicializar conexiones a las bases de datos y modelos
 connectDB()
     .then(() => {

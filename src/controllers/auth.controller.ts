@@ -113,7 +113,7 @@ export const saveUser = async (
   req: express.Request,
   res: express.Response
 ): Promise<void> => {
-  const { nombre, email, password, role, phone } = req.body;
+  const { nombre, email, password, roles, phone } = req.body;
   const { User } = getModels();
 
   try {
@@ -124,7 +124,7 @@ export const saveUser = async (
       nombre,
       email,
       password: hashedPassword,
-      role,
+      roles: roles || ['user'], // Use provided roles or default to ['user']
       phone,
       createdAt: Date.now(),
       status: true,
@@ -142,7 +142,7 @@ export const updateUser = async (
   res: express.Response
 ): Promise<void> => {
   const { userId } = req.params;
-  const { nombre, password, phone, role } = req.body;
+  const { nombre, password, phone, roles } = req.body;
   const { User } = getModels();
 
   try {
@@ -158,7 +158,7 @@ export const updateUser = async (
 
     if (nombre) updateData.nombre = nombre;
     if (phone) updateData.phone = phone;
-    if (role) updateData.role = role;
+    if (roles) updateData.roles = roles;
 
     // Hash password if provided
     if (password) {

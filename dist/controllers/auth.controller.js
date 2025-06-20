@@ -84,7 +84,7 @@ export const getAllUsers = async (req, res) => {
     }
 };
 export const saveUser = async (req, res) => {
-    const { nombre, email, password, role, phone } = req.body;
+    const { nombre, email, password, roles, phone } = req.body;
     const { User } = getModels();
     try {
         // Hash the password before saving
@@ -93,7 +93,7 @@ export const saveUser = async (req, res) => {
             nombre,
             email,
             password: hashedPassword,
-            role,
+            roles: roles || ['user'], // Use provided roles or default to ['user']
             phone,
             createdAt: Date.now(),
             status: true,
@@ -108,7 +108,7 @@ export const saveUser = async (req, res) => {
 };
 export const updateUser = async (req, res) => {
     const { userId } = req.params;
-    const { nombre, password, phone, role } = req.body;
+    const { nombre, password, phone, roles } = req.body;
     const { User } = getModels();
     try {
         // Check if user exists
@@ -123,8 +123,8 @@ export const updateUser = async (req, res) => {
             updateData.nombre = nombre;
         if (phone)
             updateData.phone = phone;
-        if (role)
-            updateData.role = role;
+        if (roles)
+            updateData.roles = roles;
         // Hash password if provided
         if (password) {
             updateData.password = await hashPassword(password);
