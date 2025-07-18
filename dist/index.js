@@ -28,7 +28,7 @@ if (process.env.NODE_ENV !== "production") {
 app.use(cors({
     origin: process.env.NODE_ENV === "production"
         ? process.env.FRONTEND_URL
-        : ["http://localhost:5173", "http://localhost:3000"],
+        : ["http://localhost:5173", "http://localhost:3000", "https://back-production-abdc.up.railway.app:8080"],
     credentials: true,
 }));
 // Rutas
