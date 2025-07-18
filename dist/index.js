@@ -30,11 +30,11 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 // CORS configuration to accept all requests from all ports
-app.use(cors({
+/*app.use(cors({
     origin: "*", // This allows all origins
     credentials: true,
 }));
-
+*/
 // If you truly want to allow *all* requests without any restrictions on credentials,
 // you might even consider removing the `credentials: true` if it's not strictly needed
 // for your specific use case with a wildcard origin, as it can sometimes lead to
